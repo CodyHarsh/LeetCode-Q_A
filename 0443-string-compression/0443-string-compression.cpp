@@ -1,53 +1,32 @@
 class Solution {
 public:
-    //Conversion of a integer value into char
-    void conversionIntToChar(int value, vector<char>& ans){
-        int temp =  value;
-        vector<char> valueStored;
-        while(temp){
-            int store = temp%10;
-            //Converting the last value into the integer:
-            char finalValue = '0' + store;
-            valueStored.push_back(finalValue);
-            temp /=10;
-        }
-        
-        for(int i = valueStored.size()-1; i>=0; i--){
-            ans.push_back(valueStored[i]);
-        }
-    }
-    
     int compress(vector<char>& chars) {
-        vector<char> ans;
-        //If we have the base case as 1
-        if(chars.size() == 1){
-            return 1;
-        }
-        
-        char prev = chars[0];
-        int count = 1;
-        
-        for(int i = 1; i<chars.size(); i++){
-            if(chars[i] == prev){
-                count++;
+        int ans = 0;
+
+        // iterate through input vector using i pointer
+        for (int i = 0; i < chars.size();) {
+            const char letter = chars[i]; // current character being compressed
+            int count = 0; // count of consecutive occurrences of letter
+
+            // count consecutive occurrences of letter in input vector
+            while (i < chars.size() && chars[i] == letter) {
+                ++count;
+                ++i;
             }
-            else{
-                ans.push_back(prev);
-                
-                if(count != 1){
-                    conversionIntToChar(count, ans);
+
+            // write letter to compressed vector
+            chars[ans++] = letter;
+
+            // if count is greater than 1, write count as string to compressed vector
+            if (count > 1) {
+                // convert count to string and iterate over each character in string
+                for (const char c : to_string(count)) {
+                    chars[ans++] = c;
                 }
-                
-                prev = chars[i];
-                count = 1;
             }
         }
-         ans.push_back(chars[chars.size()-1]);
-         if(count != 1){
-            conversionIntToChar(count, ans);
-         }
-        chars = ans;
-        
-        return ans.size();
-     }
+
+        // return length of compressed vector
+        return ans;
+    }
 };
