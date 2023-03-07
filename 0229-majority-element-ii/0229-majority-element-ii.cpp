@@ -3,15 +3,11 @@ public:
     vector<int> majorityElement(vector<int>& nums) {
         vector<int>ans;
 
-        if(nums.size() == 1){
-            ans.push_back(nums[0]);
-            return ans;
-        }
         int num1 = -1;
         int num2 = -1;
         int count1 = 0;
         int count2 = 0;
-        
+        //Finding the 2 largest frequency elements
         for(int i = 0; i<nums.size(); i++){
             if(nums[i] == num1){
                 count1++;
@@ -29,6 +25,8 @@ public:
             }
         }
         
+        
+        //Counting that both num1 and num2 appears more than n/3 times
         count1 = 0;
         count2 = 0;
         for(int i= 0; i<nums.size(); i++){
