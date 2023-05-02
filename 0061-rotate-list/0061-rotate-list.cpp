@@ -11,6 +11,47 @@
 class Solution {
 public:
     
+    //Appraoch 2:
+
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head == NULL || head -> next == NULL){
+            return head;
+        }
+        
+        //Step 1: Find the size:
+        int size = 1;
+        ListNode *curr = head;
+        while(curr -> next){
+            size++;
+            curr = curr -> next;
+        }
+        
+        //Step 2: connect the last node with first node so it become circular
+        curr -> next = head;
+        
+        
+        //Step 3: if the k is greater than the size of the linked list:
+        int n = k % size;
+        
+        //Step 4: travel from starting node to size - k nodes:
+        int travel = size - n;
+        
+        //travelling till n not become's 0 and 
+        while(travel--){
+            curr = curr -> next;
+        }
+        
+        
+        //Step 5: Making the curr -> next NULL as the left behind is k digits and connect the left behind digits with head:
+        head = curr -> next;
+        curr -> next = NULL;
+        return head;
+
+    }
+    
+    
+    /*
+    //Approach 1: Using the rotation logic:
     ListNode *rotate(ListNode *head){
         
         ListNode *prev = NULL;
@@ -67,4 +108,6 @@ public:
         //Rotate the whole array:
         return rotate(rotate1);
     }
+    
+    */
 };
