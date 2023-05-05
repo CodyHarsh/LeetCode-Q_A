@@ -11,20 +11,28 @@
  */
 class Solution {
 public:
-    
-    void traverse(TreeNode* root , vector<int> &ans){
-        if(root == NULL){
-            return;
+    vector<int> inorderTraversal(TreeNode* root) {
+        stack<TreeNode*>  st;
+        vector<int> ans;
+        TreeNode *temp = root;
+        
+        while(true){
+            if(temp != NULL){
+                st.push(temp);
+                temp = temp -> left;
+            }else{
+                //If stack is empty
+                if(st.empty()){
+                    break;
+                }
+                //if temp left is null than just print the parent node:
+                temp = st.top();
+                st.pop();
+                ans.push_back(temp -> val);
+                temp = temp -> right;
+            }
         }
         
-        //Left:
-        traverse(root -> left , ans);
-        ans.push_back(root -> val);
-        traverse(root -> right , ans);
-    }
-    vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
-        traverse(root ,ans );
         return ans;
     }
 };
