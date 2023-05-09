@@ -11,11 +11,16 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
+    int maxDepth(TreeNode* root, int &maxi ) {
         if(root == NULL) return 0;
-        int left = maxDepth(root->left);
-        int right = maxDepth(root->right);
-        return max(left, right) + 1;
+        
+       
+        int left = maxDepth(root->left, maxi);
+        
+        int right = maxDepth(root->right, maxi);
+        
+        maxi =  max((left + right), maxi);
+        return 1 + max(left ,right);
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
@@ -23,22 +28,9 @@ public:
         if(root == NULL){
             return NULL;
         }
-        
+        int maxi = 0;
         //find the current maximum of children roots:
-        int rightDiameter = -1, leftDiameter = -1;
-        int x = 0,y = 0;
-        if(root -> right){ 
-            rightDiameter = diameterOfBinaryTree(root -> left);
-            x = maxDepth(root -> right);
-        }
-        
-        if(root -> left){   
-             y = maxDepth(root -> left);
-             leftDiameter = diameterOfBinaryTree(root -> right);
-        }
-        
-        int rootKaDiameter = x + y;
-        
-        return max((max(rootKaDiameter, rightDiameter)), leftDiameter);
+        maxDepth(root , maxi);
+        return maxi;
     }
 };
