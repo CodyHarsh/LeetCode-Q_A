@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    
+    //Recursively: 
     bool isSymmetric1(TreeNode *left1 , TreeNode * right1){
         if(left1 == NULL && right1 == NULL){
             return true;
@@ -34,7 +34,32 @@ public:
         return a1==a2;
     }
     bool isSymmetric(TreeNode* root) {
+        //Recusively:
+        //return isSymmetric1(root -> left, root -> right);
         
-        return isSymmetric1(root -> left, root -> right);
+        
+        //Iteratively:
+        queue<TreeNode * > q;
+        
+        q.push(root -> left);
+        q.push(root -> right);
+        
+        while(!q.empty()){
+            TreeNode *leftNode = q.front();
+            q.pop();
+            TreeNode *rightNode = q.front();
+            q.pop();
+            if(leftNode == NULL && rightNode == NULL) continue;
+            
+            if(leftNode == NULL || rightNode == NULL) return false;
+            
+            if(leftNode -> val != rightNode -> val) return false;
+            
+            q.push(leftNode -> right);
+            q.push(rightNode -> left);
+            q.push(leftNode -> left);
+            q.push(rightNode -> right);
+        }
+        return true;
     }
 };
