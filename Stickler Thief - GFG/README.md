@@ -4,19 +4,19 @@
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>n = 6
 a[] = {5,5,10,100,10,5}
 <strong>Output: </strong>110
-<strong>Explanation: </strong>5+100+5=110</span></pre>
+<strong>Explanation: </strong>5+100+5=110</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input:
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:
 </strong>n = 3
 a[] = {1,2,3}
 <strong>Output: </strong>4
-<strong>Explanation: </strong>1+3=4</span></pre>
+<strong>Explanation: </strong>1+3=4</span><div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong><br>
 Complete the function<strong>FindMaxSum()</strong>which takes an array <strong>arr[]</strong> and <strong>n</strong> as input which returns the maximum money he can get following the rules</span></p>
