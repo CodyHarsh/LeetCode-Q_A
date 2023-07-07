@@ -35,7 +35,16 @@ class Solution
         // return max(left, right);
         
         vector<int> dp(n,-1);
-        return findMax(arr, n, dp);
+        dp[0] = arr[0];
+        for(int i = 1; i<n; i++){
+            int left = dp[i-1];
+            int right = arr[i];
+            if(i > 1)
+            right = arr[i] + dp[i-2];
+            
+            dp[i] = max(left, right);
+        }
+        return dp[n-1];
     }
 };
 
