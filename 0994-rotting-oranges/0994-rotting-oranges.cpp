@@ -77,7 +77,7 @@ public:
             */
         }
         
-        
+        //Now checking for the matrix that if 1(fresh orange) is left or not
         for(int i = 0; i<n; i++){
             for(int j = 0; j<m; j++){
                 if(grid[i][j] == 1){
