@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int recursion(vector<int> &nums, int prev, int index, vector<vector<int>> &dp){
+        if(index == nums.size()){
+            return 0;
+        }
+
+        if(dp[index][prev+1] != -1){
+            return dp[index][prev+1];
+        }
+        int include = 0;
+        int notInclude = recursion(nums, prev, index + 1,dp);
+        if(prev == -1 || nums[index] > nums[prev]){
+            include = recursion(nums, index,index+1,dp) + 1;
+        }
+        dp[index][prev+1] = max(include, notInclude);
+        return dp[index][prev+ 1];
+    }
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>> dp(n+1 , vector<int>(n+1, -1)); 
+        return recursion(nums, -1, 0,dp);
+    }
+};
